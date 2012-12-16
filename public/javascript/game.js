@@ -1,4 +1,5 @@
-define(["player", "background", "jquery"], function (Player, Background, $) {
+define(["player", "remotePlayer", "background", "jquery"], function (Player, RemotePlayer, Background, $) {
+  "use strict";
   window.requestAnimFrame = (function () {
     return  window.requestAnimationFrame ||
       window.webkitRequestAnimationFrame ||
@@ -20,6 +21,11 @@ define(["player", "background", "jquery"], function (Player, Background, $) {
 
       this.background.render(gameTime);
       this.player.render(gameTime);
+
+      this.remotePlayers.forEach(function(player) {
+        player.update();
+        player.render(gameTime);
+      });
 
 
       this.stats.end();
@@ -45,8 +51,15 @@ define(["player", "background", "jquery"], function (Player, Background, $) {
       var initialTime = 0;
       var gameTime = 0;
 
+      self.remotePlayers = [];
+
       var socket = io.connect('http://localhost');
       socket.emit('connect');
+
+      socket.on('user connected', function(msg) {
+        console.log("user connected " + msg);
+        self.remotePlayers.push(new RemotePlayer(self.context, socket));
+      });
 
       self.player = new Player(self.context, socket);
       self.background = new Background(self.context);
