@@ -4,7 +4,7 @@
   "private": true,
   "author": "Jonathan Taylor <jon@jetaylor.net>",
   "license": "MIT",
-  "description": "An browser game engine experiment using Node.JS, HTML5 Canvas, and Socket.IO.",
+  "description": "A browser game engine experiment using Node.JS, HTML5 Canvas, and Socket.IO.",
   "scripts": {
     "start": "node app"
   },
