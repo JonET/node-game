@@ -1,0 +1,17 @@
+{
+  "name": "node-game",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Jonathan Taylor <jon@jetaylor.net>",
+  "license": "MIT",
+  "description": "An browser game engine experiment using Node.JS, HTML5 Canvas, and Socket.IO.",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.3",
+    "jade": "*",
+    "node-sass": "*",
+    "socket.io": "~0.9.11"
+  }
+}
